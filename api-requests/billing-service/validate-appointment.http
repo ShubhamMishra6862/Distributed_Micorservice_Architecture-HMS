@@ -1,0 +1,3 @@
+### Validate Appointment by ID
+GET http://localhost:4001/appointments/validate/{{appointmentId}}
+

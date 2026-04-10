@@ -1,0 +1,9 @@
+### Update Appointment Status
+PUT http://localhost:4004/api/appointments/{{appointmentId}}/status
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "CONFIRMED"
+}
+

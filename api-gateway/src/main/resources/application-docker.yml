@@ -1,7 +1,9 @@
 server:
-  port: 4004 # Gateway listens on port 4004
+  port: 4004
 
 spring:
+  profiles:
+    active: docker
   cloud:
     gateway:
       routes:
@@ -21,6 +23,15 @@ spring:
             - StripPrefix=1
             - JwtValidation
 
+        # Route for /api/appointments/** to appointment-service
+        - id: appointment-service-route
+          uri: http://appointment-service:4002
+          predicates:
+            - Path=/api/appointments/**
+          filters:
+            - StripPrefix=1
+            - JwtValidation
+
         # Route for /api/docs/patients to patient-service /v3/api-docs
         - id: api-docs-patient-route
           uri: http://patient-service:4000
@@ -36,15 +47,6 @@ spring:
           filters:
             - RewritePath=/api-docs/auth,/v3/api-docs
 
-        # Route for /api/appointments/** to appointment-service
-        - id: appointment-service-route
-          uri: http://appointment-service:4002
-          predicates:
-            - Path=/api/appointments/**
-          filters:
-            - StripPrefix=1
-            - JwtValidation
-
         # Route for /api/docs/appointments to appointment-service /v3/api-docs
         - id: api-docs-appointment-route
           uri: http://appointment-service:4002
@@ -52,3 +54,7 @@ spring:
             - Path=/api-docs/appointments
           filters:
             - RewritePath=/api-docs/appointments,/v3/api-docs
+
+auth:
+  service:
+    url: http://auth-service:4005

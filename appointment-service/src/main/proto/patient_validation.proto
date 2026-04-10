@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package patient.validation;
+option java_multiple_files = true;
+option java_package = "patient.validation";
+option java_outer_classname = "PatientValidationOuterClass";
+
+service PatientValidationService {
+  rpc ValidatePatient (PatientValidationRequest) returns (PatientValidationResponse);
+}
+
+message PatientValidationRequest {
+  string patientId = 1;
+}
+
+message PatientValidationResponse {
+  bool exists = 1;
+  string patientId = 2;
+  string email = 3;
+  string name = 4;
+}
