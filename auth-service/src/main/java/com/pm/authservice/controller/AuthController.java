@@ -3,6 +3,7 @@ package com.pm.authservice.controller;
 import com.pm.authservice.dto.LoginRequestDTO;
 import com.pm.authservice.dto.LoginResponseDTO;
 import com.pm.authservice.service.AuthService;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,7 @@ public class AuthController {
     return ResponseEntity.ok(new LoginResponseDTO(token));
   }
 
+  @Hidden
   @Operation(summary = "Validate Token")
   @GetMapping("/validate")
   public ResponseEntity<Void> validateToken(

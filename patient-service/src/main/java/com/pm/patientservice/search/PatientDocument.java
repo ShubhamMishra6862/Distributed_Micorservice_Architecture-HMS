@@ -12,6 +12,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Data
 @Document(indexName = "patients")
 public class PatientDocument {
+
   @Id
   private String id;
 
@@ -29,5 +30,10 @@ public class PatientDocument {
 
   @Field(type = FieldType.Date, format = DateFormat.date)
   private LocalDate registeredDate;
-}
 
+  @Field(type = FieldType.Double)
+  private Double height;
+
+  @Field(type = FieldType.Double)
+  private Double weight;
+}
