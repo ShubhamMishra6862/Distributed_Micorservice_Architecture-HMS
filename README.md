@@ -19,6 +19,7 @@ A comprehensive healthcare management system showcasing modern distributed archi
 ## 🏗️ Architecture
 
 ### System Diagram
+<img width="1536" height="948" alt="System Diagram" src="https://github.com/user-attachments/assets/d5e71a43-6a1b-4ed7-b019-7afa4e908598" />
 
 ### Architecture Overview
 ```
