@@ -75,6 +75,15 @@ springdoc:
     path: /swagger-ui.html
     operations-sorter: method
     tagsSorter: alpha
+    urls:
+      - url: /api-docs/auth
+        name: Auth Service
+      - url: /api-docs/patients
+        name: Patient Service
+      - url: /api-docs/appointments
+        name: Appointment Service
+      - url: /api-docs/billing
+        name: Billing Service
   api-docs:
     path: /v3/api-docs
   use-fqn: true

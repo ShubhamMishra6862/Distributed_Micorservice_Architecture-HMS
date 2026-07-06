@@ -2,6 +2,7 @@ package com.pm.patientservice.grpc;
 
 import com.pm.patientservice.service.PatientService;
 import io.grpc.stub.StreamObserver;
+import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import patient.validation.PatientValidationRequest;
@@ -9,6 +10,7 @@ import patient.validation.PatientValidationResponse;
 import patient.validation.PatientValidationServiceGrpc;
 import java.util.UUID;
 
+@Slf4j
 @GrpcService
 public class PatientValidationServiceImpl extends PatientValidationServiceGrpc.PatientValidationServiceImplBase {
 
@@ -31,6 +33,7 @@ public class PatientValidationServiceImpl extends PatientValidationServiceGrpc.P
       
       responseObserver.onNext(response);
       responseObserver.onCompleted();
+      log.info("Patient validation successful for patientId: {}", patientId);
     } catch (Exception e) {
       PatientValidationResponse response = PatientValidationResponse.newBuilder()
           .setExists(false)

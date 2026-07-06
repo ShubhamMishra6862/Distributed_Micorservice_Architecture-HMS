@@ -1,6 +1,7 @@
 package com.pm.apigateway.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,10 @@ public class SwaggerConfig {
         .info(new Info()
             .title("Microservices API Gateway")
             .version("1.0.0")
-            .description("Aggregated API documentation for all microservices"));
+            .description("Aggregated API documentation for all microservices")
+            .contact(new Contact()
+                .name("API Support")
+                .email("support@example.com")));
   }
 }
 
