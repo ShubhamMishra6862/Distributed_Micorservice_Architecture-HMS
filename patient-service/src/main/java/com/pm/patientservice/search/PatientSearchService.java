@@ -6,6 +6,8 @@ import com.pm.patientservice.dto.PatientResponseDTO;
 import com.pm.patientservice.model.Patient;
 import java.util.List;
 import java.util.UUID;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,6 +17,7 @@ import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class PatientSearchService {
   private final ElasticsearchOperations operations;
@@ -35,12 +38,15 @@ public class PatientSearchService {
   }
 
   public PatientSearchResponse search(PatientSearchCriteria criteria) {
-    Sort sort = Sort.by(parseDirection(criteria.getSortDir()), criteria.getSortBy());
+    Sort sort = Sort.by(parseDirection(criteria.getSortDir()), resolverField(criteria.getSortBy()));
     Pageable pageable = PageRequest.of(
         Math.max(0, criteria.getPage()),
         Math.max(1, criteria.getSize()),
         sort);
-
+    log.info("Sort Direction: {}", criteria.getSortDir());
+    log.info("Sort Field: {}", criteria.getSortBy());
+    log.info("Pageable: {}", pageable);
+    log.info("Sort: {}", pageable.getSort());
     var query = queryBuilder.build(criteria, pageable);
     SearchHits<PatientDocument> hits = operations.search(query, PatientDocument.class);
 
@@ -61,6 +67,16 @@ public class PatientSearchService {
       return Sort.Direction.DESC;
     }
     return "asc".equalsIgnoreCase(dir) ? Sort.Direction.ASC : Sort.Direction.DESC;
+  }
+
+  private String resolverField(String field) {
+    // Implement field resolution logic if needed
+      return switch (field) {
+          case "name" -> "name.keyword";
+          case "email" -> "email.keyword";
+          case "registeredDate" -> "registeredDate.keyword";
+          default -> throw new RuntimeException("The Field input is incorrect");
+      };
   }
 }
 

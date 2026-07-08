@@ -26,10 +26,22 @@ public class PatientSearchQueryBuilder {
 
     if (StringUtils.hasText(criteria.getQ())) {
       hasAny = true;
-      boolBuilder.must(qb -> qb.multiMatch(mm -> mm
-          .query(criteria.getQ())
-          .fields("name", "email", "address")
-          .fuzziness("AUTO")));
+
+      boolBuilder.must(q -> q.bool(b -> b
+
+              // Full-text search
+              .should(s -> s.multiMatch(mm -> mm
+                      .query(criteria.getQ())
+                      .fields("name", "email", "address")
+                      .fuzziness("AUTO")))
+
+              // Prefix search on name
+              .should(s -> s.prefix(p -> p
+                      .field("name.keyword")
+                      .value(criteria.getQ().toLowerCase())))
+
+              .minimumShouldMatch("1")
+      ));
     }
 
     if (StringUtils.hasText(criteria.getName())) {

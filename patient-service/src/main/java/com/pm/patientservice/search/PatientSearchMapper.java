@@ -10,6 +10,8 @@ public class PatientSearchMapper {
     document.setName(patient.getName());
     document.setEmail(patient.getEmail());
     document.setAddress(patient.getAddress());
+    document.setHeight(patient.getHeight());
+    document.setWeight(patient.getWeight());
     document.setDateOfBirth(patient.getDateOfBirth());
     document.setRegisteredDate(patient.getRegisteredDate());
     return document;
@@ -21,6 +23,8 @@ public class PatientSearchMapper {
     dto.setName(document.getName());
     dto.setEmail(document.getEmail());
     dto.setAddress(document.getAddress());
+    dto.setHeight(document.getHeight());
+    dto.setWeight(document.getWeight());
     if (document.getDateOfBirth() != null) {
       dto.setDateOfBirth(document.getDateOfBirth());
     }

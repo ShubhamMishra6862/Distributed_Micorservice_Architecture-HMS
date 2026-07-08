@@ -50,7 +50,7 @@ public class PatientController {
     PatientResponseDTO patientResponseDTO = patientService.createPatient(
         patientRequestDTO);
 
-    return ResponseEntity.ok().body(patientResponseDTO);
+    return ResponseEntity.created(null).body(patientResponseDTO);
   }
 
   @PutMapping("/{id}")

@@ -4,19 +4,23 @@ import java.time.LocalDate;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.*;
 
 @Data
 @Document(indexName = "patients")
+@Setting(settingPath = "elasticsearch/patients-settings.json")
+@Mapping(mappingPath = "elasticsearch/patients-mapping.json")
 public class PatientDocument {
 
   @Id
   private String id;
 
-  @Field(type = FieldType.Text)
+  @MultiField(
+          mainField = @Field(type = FieldType.Text),
+          otherFields = {
+                  @InnerField(suffix = "keyword", type = FieldType.Keyword)
+          }
+  )
   private String name;
 
   @Field(type = FieldType.Keyword)
