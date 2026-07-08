@@ -2,9 +2,9 @@
 
 > Production-ready healthcare platform built with microservices, demonstrating enterprise-grade patterns including service isolation, inter-service communication, and event-driven architecture.
 
-##Demo
-https://youtu.be/iN_VpAcTOWw?si=WdTEmBAXWCC1JHSM
-##Deployed Swagger Documentation
+## 🎥 Project Demo
+[![Healthcare Management System Demo](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)]([https://www.youtube.com/watch?v=VIDEO_ID](http://youtube.com/watch?v=iN_VpAcTOWw))
+## Deployed Swagger Documentation
 https://shubhammishra6862.github.io/Distributed_Micorservice_Architecture-HMS/
 
 ## 📋 Overview
