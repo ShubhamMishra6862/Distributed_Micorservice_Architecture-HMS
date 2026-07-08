@@ -2,6 +2,11 @@
 
 > Production-ready healthcare platform built with microservices, demonstrating enterprise-grade patterns including service isolation, inter-service communication, and event-driven architecture.
 
+##Demo
+https://youtu.be/iN_VpAcTOWw?si=WdTEmBAXWCC1JHSM
+##Deployed Swagger Documentation
+https://shubhammishra6862.github.io/Distributed_Micorservice_Architecture-HMS/
+
 ## 📋 Overview
 
 A comprehensive healthcare management system showcasing modern distributed architecture patterns. Manages patient records, appointments, billing, and authentication across isolated microservices with event-driven communication and gRPC integration.
